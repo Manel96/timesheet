@@ -1,4 +1,4 @@
-package tn.esprit.spring.serviceTest;
+package tn.esprit.spring;
 
 import static org.junit.Assert.assertEquals;
 
@@ -25,18 +25,7 @@ public class EntrepriseServiceTest {
 	@Autowired 
 	IEntrepriseService cs;
 	//
-	
 
-	@Test
-	public void testRetrieveAllEnts() {
-		List<Entreprise> listEnts = cs.retrieveAllEnts();
-		assertEquals(6, listEnts.size());
-	}
-	@Test
-	public void testRetrieveEnt() {
-		Entreprise entRetrieved = cs.retrieveEntById(1);
-		assertEquals(1, entRetrieved.getId());
-	}
 	@Test
 	public void testAddEnt() throws ParseException {
 		Entreprise u = new Entreprise("Esprit","tn"); 
@@ -54,13 +43,21 @@ public class EntrepriseServiceTest {
 	
 	@Test
 	public void testDeleteEntt(){
-		 String msg=cs.deleteEnt(6);
+		 String msg=cs.deleteEnt(2);
 		assertEquals("The entreprise has been deleted", msg);
 	
 		
 	}
 	
+	@Test
+	public void testRetrieveAllEnts() {
+		List<Entreprise> listEnts = cs.retrieveAllEnts();
+		assertEquals(4, listEnts.size());
+	}
 	
-	
-	
+	@Test
+	public void testRetrieveEnt() {
+		Entreprise entRetrieved = cs.retrieveEntById(1);
+		assertEquals(1, entRetrieved.getId());
+	}
 }
