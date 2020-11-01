@@ -1,9 +1,12 @@
 package tn.esprit.spring.services;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,12 +39,7 @@ public class EmployeServiceImpl implements IEmployeService {
 		return employeRepository.getEmployeByEmailAndPassword(login, password);
 	}
 
-	@Override
-	public int addOrUpdateEmploye(Employe employe) {
-		employeRepository.save(employe);
-		return employe.getId();
-	}
-
+	
 
 	public void mettreAjourEmailByEmployeId(String email, int employeId) {
 		Employe employe = employeRepository.findById(employeId).get();
@@ -104,19 +102,6 @@ public class EmployeServiceImpl implements IEmployeService {
 		return employeManagedEntity.getPrenom();
 	}
 	 
-	public void deleteEmployeById(int employeId)
-	{
-		Employe employe = employeRepository.findById(employeId).get();
-
-		//Desaffecter l'employe de tous les departements
-		//c'est le bout master qui permet de mettre a jour
-		//la table d'association
-		for(Departement dep : employe.getDepartements()){
-			dep.getEmployes().remove(employe);
-		}
-
-		employeRepository.delete(employe);
-	}
 
 	public void deleteContratById(int contratId) {
 		Contrat contratManagedEntity = contratRepoistory.findById(contratId).get();
@@ -158,8 +143,50 @@ public class EmployeServiceImpl implements IEmployeService {
 		return timesheetRepository.getTimesheetsByMissionAndDate(employe, mission, dateDebut, dateFin);
 	}
 
-	public List<Employe> getAllEmployes() {
-		return (List<Employe>) employeRepository.findAll();
+	
+	
+	////////////////////////////////
+	
+	
+	private static final Logger l = LogManager.getLogger(ContratServiceImpl.class);
+	
+	
+	@Override
+	public Employe addOrUpdateEmploye(Employe employe) {
+		l.info("In  addEntreprise : " + employe); 
+		employeRepository.save(employe);
+		l.info("Out of  addEmploye. "); 
+		return employe;
 	}
 
+	public List<Employe> getAllEmployes() {
+		l.info("In  retrieveAllEmployes: "); 
+		List<Employe> employes = (List<Employe>) employeRepository.findAll(); 
+		for (Employe employe : employes) {
+			l.debug("employe +++ : " + employe);
+		}
+		l.info("Out of retrieveAllEmployes."); 
+			return employes; 
+	}
+	
+	@Override
+	public Employe mettreAjourEmploye(Employe employe) {
+		l.info("in  mettreAjourEmp employe = " + employe);
+		return employeRepository.save(employe) ;
+	}
+	
+	public Employe deleteEmployeById(int employeId)
+	{
+		l.info("In  deleteEmploye: "); 
+		Employe employe = employeRepository.findById(employeId).get();
+
+		for(Departement dep : employe.getDepartements()){
+			dep.getEmployes().remove(employe);
+			l.debug("employe +++ : " + employe);
+		}
+        employeRepository.delete(employe);
+        l.info("Out of deleteEmployes."); 
+		      return employe;
+	}
+	
 }

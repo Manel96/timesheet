@@ -21,7 +21,8 @@ public interface IEmployeService {
 	public int ajouterContrat(Contrat contrat);
 	public void affecterContratAEmploye(int contratId, int employeId);
 	public String getEmployePrenomById(int employeId);
-	public void deleteEmployeById(int employeId);
+	public Employe deleteEmployeById(int employeId);
+	
 	public void deleteContratById(int contratId);
 	public int getNombreEmployeJPQL();
 	public List<String> getAllEmployeNamesJPQL();
@@ -34,8 +35,13 @@ public interface IEmployeService {
 	public List<Timesheet> getTimesheetsByMissionAndDate(Employe employe, Mission mission, 
 	Date dateDebut, Date dateFin);
 
-	int addOrUpdateEmploye(Employe employe);
-	
+	public Employe addOrUpdateEmploye(Employe employe);
+
+
+	public Employe mettreAjourEmploye(Employe employe);
+
+
+
 	
 	
 
