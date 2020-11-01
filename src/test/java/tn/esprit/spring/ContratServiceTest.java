@@ -27,7 +27,7 @@ public class ContratServiceTest {
 	@Test
 	public void testRetrieveAllContrat() {
 		List<Contrat> listContrats = cs.retrieveAllContrats(); 
-		assertEquals(2, listContrats.size());
+		assertEquals(7, listContrats.size());
 	}
 	
 	@Test
@@ -58,7 +58,7 @@ public class ContratServiceTest {
 	
 	@Test
 	public void testDeleteContrat(){
-		 String msg=cs.deleteContrat(19);
+		 String msg=cs.deleteContrat(30);
 	
 		assertEquals("The contract has been deleted", msg);
 	
