@@ -94,6 +94,7 @@ public class EntrepriseServiceImpl implements IEntrepriseService {
 
 	@Override
 	public String deleteEnt(int id) {
+		l.info("in deletEnt:   ");
 		Entreprise e =entrepriseRepoistory.findById(id).get();
 		l.info("In  Entreprise: " + e); 
 		String msg="No such contract with this id";
