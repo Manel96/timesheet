@@ -40,10 +40,14 @@ public class Departement implements Serializable {
 		super();
 	}
 	
+	public Departement(int id,String name) {
+		this.name = name;
+		this.id=id;
+	}
 	public Departement(String name) {
 		this.name = name;
-	}
 	
+	}
 	public int getId() {
 		return id;
 	}
