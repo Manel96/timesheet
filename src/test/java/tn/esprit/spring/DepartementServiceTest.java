@@ -25,7 +25,11 @@ IDepartementService depser;
 @Test
 public void testRetrieveAllDepartements() {
 	List<Departement> listDepartments = depser.getAllDepartements(); 
+<<<<<<< HEAD
 	assertEquals(14,listDepartments.size());
+=======
+	assertEquals(46,listDepartments.size());
+>>>>>>> 338f46350ae017e8f455afa9115837cf27ff88dd
 	
 }
 @Test
@@ -47,14 +51,18 @@ public void testAddDepartment() throws ParseException {
 public void testModifyDepartement() throws ParseException   {
 	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	Date d = dateFormat.parse("2015-03-23");
-	Departement dep = new Departement("Dep1 Informatique");
+	Departement dep = new Departement(9, "DepInformatique2");
 	Departement depModified = depser.UpdateDepartement(dep);
 	assertEquals(dep.getName(), depModified.getName());
 }
 
 @Test
 public void testDeleteDepartement(){
+<<<<<<< HEAD
 	 String msg=depser.deleteDepartement(13);
+=======
+	 String msg=depser.deleteDepartement(21);
+>>>>>>> 338f46350ae017e8f455afa9115837cf27ff88dd
 
 	assertEquals("The Departement has been deleted", msg);
 
