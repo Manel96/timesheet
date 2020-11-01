@@ -4,7 +4,6 @@ package tn.esprit.spring;
 import static org.junit.Assert.assertEquals;
 
 
-import java.text.ParseException;
 import java.util.List;
 
 import org.junit.Test;
@@ -24,16 +23,16 @@ public class EmployesServiceTest {
 	@Autowired 
 	IEmployeService es; 
 
-	/*affichage*/
+
 	@Test       
 	public void testRetrieveAllEmployes() {
 		List<Employe> listEmployes = es.getAllEmployes();  
-		assertEquals(9, listEmployes.size());
+		assertEquals(5, listEmployes.size());
 	}
 	
-	/*Ajout*/
+	
 	@Test
-	public void testAddEmploye() throws ParseException {
+	public void testAddEmploye() {
 		
 		Employe e = new Employe(0, "Wiem", "Taleb", null, null, false, Role.CHEF_DEPARTEMENT); 
 		Employe emplyeAdded = es.addOrUpdateEmploye(e);
@@ -42,28 +41,22 @@ public class EmployesServiceTest {
 
 
 	
-	 /*update*/
-@Test      
-	public void testModifyUser() throws ParseException   {
-		Employe e = new Employe(5, "Mayssa", "Mayssa", null, null, false, Role.TECHNICIEN); 
+	 
+    @Test      
+	public void testModifyUser()  {
+		Employe e = new Employe(2, "Mayssa", "Mazerty", null, null, false, Role.TECHNICIEN); 
 		Employe employeUpdated  = es.mettreAjourEmploye(e); 
 		assertEquals(e.getNom(), employeUpdated.getNom());
 	}
        
-       /*delete*/
+      
 	@Test     
 	public void deleteEmployeId() {
-		Employe employeDeleted= es.deleteEmployeById( 16);
-		assertEquals(16, employeDeleted.getId());
+		Employe employeDeleted= es.deleteEmployeById(14);
+		assertEquals(14, employeDeleted.getId());
 	}
 
 
 }
-
-
-
-
-
-
 
 

@@ -58,7 +58,7 @@ public class ContratServiceTest {
 	
 	@Test
 	public void testDeleteContrat(){
-		 String msg=cs.deleteContrat(30);
+		 String msg=cs.deleteContrat(32);
 	
 		assertEquals("The contract has been deleted", msg);
 	

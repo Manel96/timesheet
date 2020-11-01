@@ -25,15 +25,13 @@ IDepartementService depser;
 @Test
 public void testRetrieveAllDepartements() {
 	List<Departement> listDepartments = depser.getAllDepartements(); 
-
-	assertEquals(14,listDepartments.size());
-
+	assertEquals(7,listDepartments.size());
 	
 }
 @Test
 public void testRetrieveDepartement() {
-	Departement DepartementRetrieved = depser.retreiveDepartement(1);
-	assertEquals(1, DepartementRetrieved.getId());
+	Departement DepartementRetrieved = depser.retreiveDepartement(3);
+	assertEquals(3, DepartementRetrieved.getId());
 }
 
 @Test
@@ -56,9 +54,7 @@ public void testModifyDepartement() throws ParseException   {
 
 @Test
 public void testDeleteDepartement(){
-
-	 String msg=depser.deleteDepartement(13);
-
+	 String msg=depser.deleteDepartement(8);
 
 	assertEquals("The Departement has been deleted", msg);
 
