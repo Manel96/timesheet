@@ -6,8 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.entities.Departement;
 import tn.esprit.spring.repository.DepartementRepository;
 
@@ -33,15 +31,14 @@ public class DepartementServiceImpl implements IDepartementService {
 	@Override
 	public Departement addDepartement(Departement d) {
 		l.info("In  addDepartement : " + d); 
-		Departement DepSaved =deptRepoistory.save(d);
+		 d =deptRepoistory.save(d);
 		l.info("Out of  addDepartement. "); 
-		return DepSaved; 
+		return d; 
 	}
 
 
 	@Override
 	public Departement UpdateDepartement(Departement d) {
-		// TODO Auto-generated method stub
 		l.info("Departement Geted. "); 
 		return deptRepoistory.save(d); 
 	}
@@ -50,7 +47,7 @@ public class DepartementServiceImpl implements IDepartementService {
 	@Override
 	public String deleteDepartement(int id) {
 		l.info("In  deleteDepartement: "); 
-		Departement d =deptRepoistory.findById(id).get();
+		Departement d =deptRepoistory.findById(id).orElse(null);
 				
 		String msg="No such Departement with this id";
 		if(d!=null){

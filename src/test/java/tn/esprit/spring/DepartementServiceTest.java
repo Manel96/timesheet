@@ -53,7 +53,7 @@ public void testModifyDepartement() throws ParseException   {
 }
 
 @Test
-public void testDeleteDepartement(){
+public void testDeleteDepartement() throws ParseException{
 	 String msg=depser.deleteDepartement(8);
 
 	assertEquals("The Departement has been deleted", msg);

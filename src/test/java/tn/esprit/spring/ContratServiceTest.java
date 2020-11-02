@@ -57,8 +57,8 @@ public class ContratServiceTest {
 	}
 	
 	@Test
-	public void testDeleteContrat(){
-		 String msg=cs.deleteContrat(32);
+	public void testDeleteContrat() throws ParseException{
+		 String msg=cs.deleteContrat(19);
 	
 		assertEquals("The contract has been deleted", msg);
 	

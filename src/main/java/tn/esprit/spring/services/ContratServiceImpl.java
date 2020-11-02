@@ -1,5 +1,6 @@
 package tn.esprit.spring.services;
 
+
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,13 +12,11 @@ import tn.esprit.spring.entities.Contrat;
 import tn.esprit.spring.repository.ContratRepository;
 
 @Service
-public class ContratServiceImpl implements IContratService {
+public class ContratServiceImpl implements IContratService  {
 
 	@Autowired
 	ContratRepository contratRepository;
-
 	private static final Logger l = LogManager.getLogger(ContratServiceImpl.class);
-
 	public List<Contrat> getAllContrats() {
 		return (List<Contrat>) contratRepository.findAll();
 	}
@@ -41,9 +40,9 @@ public class ContratServiceImpl implements IContratService {
 
 
 	@Override
-	public String deleteContrat(int id) {
+	public String deleteContrat(int id){
 		l.info("In  deleteContrat: "); 
-		Contrat c =contratRepository.findById(id).get();
+		Contrat c =contratRepository.findById(id).orElse(null);
 		String msg="No such contract with this id";
 		if(c!=null){
 			contratRepository.deleteById(id);
@@ -69,9 +68,7 @@ public class ContratServiceImpl implements IContratService {
 	@Override
 	public Contrat retrieveContratById(int id) {
 		l.info("in  retrievContrat id = " + id);
-	
-		Contrat c=  contratRepository.findById(id).orElse(null);
-	
+    	Contrat c=  contratRepository.findById(id).orElse(null);	
 		l.info("contrat returned : " + c);
 		return c;
 	}

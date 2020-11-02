@@ -45,27 +45,7 @@ public class ControllerEmployeImpl  {
 
 	private List<Employe> employes; 
 
-	private Integer employeIdToBeUpdated; // getter et setter
-
-
-	public String doLogin() {
-
-		String navigateTo = "null";
-		authenticatedUser=employeService.authenticate(login, password);
-		if (authenticatedUser != null && authenticatedUser.getRole() == Role.ADMINISTRATEUR) {
-			navigateTo = "/pages/admin/welcome.xhtml?faces-redirect=true";
-			loggedIn = true;
-		}		
-
-		else
-		{
-			
-			FacesMessage facesMessage =
-					new FacesMessage("Login Failed: Please check your username/password and try again.");
-			FacesContext.getCurrentInstance().addMessage("form:btn",facesMessage);
-		}
-		return navigateTo;	
-	}
+	private Integer employeIdToBeUpdated; 
 
 	public String doLogout()
 	{
@@ -167,44 +147,14 @@ public class ControllerEmployeImpl  {
 		return employe.getId();
 	}
 
-	public void mettreAjourEmailByEmployeId(String email, int employeId) {
-		employeService.mettreAjourEmailByEmployeId(email, employeId);
-
-	}
-
-	public void affecterEmployeADepartement(int employeId, int depId) {
-		employeService.affecterEmployeADepartement(employeId, depId);
-
-	}
-
-
-
-	public void desaffecterEmployeDuDepartement(int employeId, int depId)
-	{
-		employeService.desaffecterEmployeDuDepartement(employeId, depId);
-	}
-
 	public int ajouterContrat(Contrat contrat) {
 		employeService.ajouterContrat(contrat);
 		return contrat.getReference();
 	}
 
-	public void affecterContratAEmploye(int contratId, int employeId)
-	{
-		employeService.affecterContratAEmploye(contratId, employeId);
-	}
-
-
-	public String getEmployePrenomById(int employeId) {
-		return employeService.getEmployePrenomById(employeId);
-	}
-
 	public void deleteEmployeById(int employeId) {
 		employeService.deleteEmployeById(employeId);
 
-	}
-	public void deleteContratById(int contratId) {
-		employeService.deleteContratById(contratId);
 	}
 
 	public int getNombreEmployeJPQL() {
@@ -221,10 +171,7 @@ public class ControllerEmployeImpl  {
 		return employeService.getAllEmployeByEntreprise(entreprise);
 	}
 
-	public void mettreAjourEmailByEmployeIdJPQL(String email, int employeId) {	
-		employeService.mettreAjourEmailByEmployeIdJPQL(email, employeId);
 
-	}
 
 	public void deleteAllContratJPQL() {
 		employeService.deleteAllContratJPQL();
