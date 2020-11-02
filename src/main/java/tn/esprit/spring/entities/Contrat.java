@@ -27,6 +27,7 @@ public class Contrat implements Serializable {
 	private String typeContrat;
 	
 	
+	private float telephone; 
 	
 	@OneToOne
 	private Employe employe;
@@ -91,6 +92,14 @@ public class Contrat implements Serializable {
 
 	public void setEmploye(Employe employe) {
 		this.employe = employe;
+	}
+
+	public float getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(float telephone) {
+		this.telephone = telephone;
 	}
 	
 	
